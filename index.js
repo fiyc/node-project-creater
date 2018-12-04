@@ -12,6 +12,7 @@
 const packageInfo = require('./package.json');
 let programe = require('commander');
 let control = require('./src/command-control');
+let log = require('./src/common/log');
 
 /**
  * 工具版本

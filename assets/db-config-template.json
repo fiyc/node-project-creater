@@ -1,0 +1,62 @@
+{
+    "name": "项目名",
+    "port": 4000,
+    "tables": [
+        {
+            "tableName": "数据库表名",
+            "tableAlias": "数据库变量名",
+            "comment": "表说明",
+            "columns": [
+                {
+                    "columnName": "主键字段名",
+                    "columnType": "BIGINT",
+                    "isPrimary": true,
+                    "columnComment": "字段描述",
+                    "defaultValue" : "默认值"
+                },
+                {
+                    "columnName": "字段名",
+                    "columnType": "STRING",
+                    "columnComment": "字段描述",
+                    "defaultValue" : "默认值"
+                },
+                {
+                    "columnName": "字段名",
+                    "columnType": "TEXT",
+                    "columnComment": "字段描述",
+                    "defaultValue" : "默认值"
+                },
+                {
+                    "columnName": "字段名",
+                    "columnType": "NUMBER",
+                    "columnComment": "字段描述",
+                    "defaultValue" : "默认值"
+                },
+                {
+                    "columnName": "字段名",
+                    "columnType": "INTEGER",
+                    "columnComment": "字段描述",
+                    "defaultValue" : "默认值"
+                },
+                {
+                    "columnName": "字段名",
+                    "columnType": "TIME",
+                    "columnComment": "字段描述",
+                    "defaultValue" : "默认值"
+                },
+                {
+                    "columnName": "字段名",
+                    "columnType": "DATE",
+                    "columnComment": "字段描述",
+                    "defaultValue" : "默认值"
+                },
+                {
+                    "columnName": "字段名",
+                    "columnType": "BOOLEAN",
+                    "columnComment": "字段描述",
+                    "defaultValue" : "默认值"
+                }
+            ]
+        }
+    ]
+}
