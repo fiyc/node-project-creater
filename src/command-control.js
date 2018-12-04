@@ -78,8 +78,17 @@ let executeTask = function (templateRootPath) {
         return;
     }
 
-    let configPath = path.join(curretPath, constant.DB_CONFIG);
+    let configPath = path.join(process.cwd(), constant.DB_CONFIG);
     let dbInfo = require(configPath);
+
+    for(let table of dbInfo.tables){
+        for(let column of table.columns){
+            if(!column.isPrimary){
+                column.isPrimary = false;
+            }
+        }
+    }
+
     let tasks = fs.readdirSync(tasksPath);
     for (let task of tasks) {
         let eachTaskPath = path.join(tasksPath, task);

@@ -14,7 +14,7 @@ let constant = {
 
     TEMP_FLODER: "temp",
 
-    DB_CONFIG: "db-config.js"
+    DB_CONFIG: "db-config.json"
 };
 
 module.exports = constant;
