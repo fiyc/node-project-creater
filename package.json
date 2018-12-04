@@ -1,0 +1,15 @@
+{
+  "name": "project-creater",
+  "version": "1.0.0",
+  "description": "node基本项目生成器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fiyc",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.19.0",
+    "handlebars": "^4.0.12"
+  }
+}
