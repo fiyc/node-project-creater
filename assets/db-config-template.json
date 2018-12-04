@@ -1,5 +1,6 @@
 {
     "name": "项目名",
+    "author": "作者",
     "port": 4000,
     "tables": [
         {
