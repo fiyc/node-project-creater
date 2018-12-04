@@ -30,7 +30,7 @@ let build = function (version) {
      */
     let curretPath = process.cwd();
     let configPath = path.join(curretPath, constant.DB_CONFIG);
-    if(!fs.existsSync(configPath)){
+    if (!fs.existsSync(configPath)) {
         console.error(`缺少${constant.DB_CONFIG}文件, 当前目录不是一个有效的项目目录.`);
         return;
     }
@@ -45,7 +45,7 @@ let build = function (version) {
      * 寻找目标模板
      */
     let targetTemplatePath = path.join(tempPath, version || 'v1');
-    if(!fs.existsSync(targetTemplatePath)){
+    if (!fs.existsSync(targetTemplatePath)) {
         console.error(`未找到目标模板.`);
         fileUtil.deleteFile(tempPath);
         return;
@@ -70,10 +70,10 @@ let build = function (version) {
     console.log('项目生成结束.');
 }
 
-let executeTask = function(templateRootPath){
+let executeTask = function (templateRootPath) {
     let tasksPath = path.join(templateRootPath, 'tasks');
 
-    if(!fs.existsSync(tasksPath) || !fs.statSync(tasksPath).isDirectory()){
+    if (!fs.existsSync(tasksPath) || !fs.statSync(tasksPath).isDirectory()) {
         console.log('无特殊编译任务.');
         return;
     }
@@ -81,28 +81,34 @@ let executeTask = function(templateRootPath){
     let configPath = path.join(curretPath, constant.DB_CONFIG);
     let dbInfo = require(configPath);
     let tasks = fs.readdirSync(tasksPath);
-    for(let task of tasks){
+    for (let task of tasks) {
         let eachTaskPath = path.join(tasksPath, task);
 
-        if(!eachTaskPath.endsWith('.js')){
+        if (!eachTaskPath.endsWith('.js')) {
             continue;
         }
 
         let taskModule = require(eachTaskPath);
-        if(!taskModule || typeof taskModule.run !== 'function'){
+        if (!taskModule || typeof taskModule.run !== 'function') {
             continue;
         }
 
         let taskRes = taskModule.run(dbInfo);
-        if(!taskRes || !taskRes.success || !taskRes.data){
+        if (!taskRes || !taskRes.success || !taskRes.data) {
             continue;
         }
 
-        for(let item of taskRes.data){
-            let templatePath = item.templatePath;
-            let savePath = item.savePath;
-            let param = item.param;
-
+        if (Array.isArray(taskRes.data)) {
+            for (let item of taskRes.data) {
+                let templatePath = item.templatePath;
+                let savePath = item.savePath;
+                let param = item.param;
+                compile(templatePath, param, savePath);
+            }
+        } else {
+            let templatePath = taskRes.data.templatePath;
+            let savePath = taskRes.data.savePath;
+            let param = taskRes.data.param;
             compile(templatePath, param, savePath);
         }
     }
