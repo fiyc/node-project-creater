@@ -25,7 +25,7 @@ let compileAndSave = function(tempalteFilePath, param, savePath){
         fs.writeFileSync(savePath, content);
         console.log(`编译生成文件 ${savePath}`);
     }catch(err){
-        console.error(err);
+        console.error(`编译模板 ${tempalteFilePath} 失败, 错误信息: ${err.message}`);
     }
 }
 
