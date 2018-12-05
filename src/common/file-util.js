@@ -18,13 +18,15 @@ let util = {
         if (fs.existsSync(targetPath)) {
             let targetPathStat = fs.statSync(targetPath);
             if (!targetPathStat.isDirectory()) {
-                console.error(`已存在文件: ${targetPath}. 无法创建项目目录`);
+                console.error(`已存在文件: ${targetPath}. 无法创建目录`);
                 return false;
             }
 
             return true;
         }
 
+        let parentPath = path.parse(targetPath).dir;
+        util.createDir(parentPath);
         fs.mkdirSync(targetPath);
         return true;
     },
@@ -33,6 +35,13 @@ let util = {
      * 拷贝文件
      */
     copyFile: function (source, dest) {
+        if(!fs.existsSync(source)){
+            console.log(`拷贝文件失败, 源文件: ${source} 不存在.`);
+            return;
+        }
+
+        let targetParentpath = path.parse(dest).dir;
+        util.createDir(targetParentpath);
         fs.copyFileSync(source, dest);
     },
 

@@ -9,6 +9,7 @@
 let fs = require('fs');
 let path = require('path');
 let h = require('handlebars');
+let fileUtil = require('./file-util');
 
 let compile = function(tempalteFilePath, param){
     let templateContent = fs.readFileSync(tempalteFilePath, 'utf-8').toString(); 
@@ -19,6 +20,8 @@ let compile = function(tempalteFilePath, param){
 let compileAndSave = function(tempalteFilePath, param, savePath){
     try{
         let content = compile(tempalteFilePath, param);
+        let targetParentPath = path.parse(savePath).dir;
+        fileUtil.createDir(targetParentPath);
         fs.writeFileSync(savePath, content);
         console.log(`编译生成文件 ${savePath}`);
     }catch(err){
