@@ -10,8 +10,9 @@ let constant = {
     /**
      * 模板仓库地址
      */
-    TEMPLATE_GIT_PATH: "https://gitee.com/fiyc/project-template.git",
-
+    // TEMPLATE_GIT_PATH: "https://gitee.com/fiyc/project-template.git",
+    TEMPLATE_GIT_PATH: "https://github.com/fiyc/node-project-template.git",
+    
     TEMP_FLODER: "temp",
 
     DB_CONFIG: "db-config.json"
